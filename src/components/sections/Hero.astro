@@ -3,6 +3,98 @@ import { Icon } from "astro-icon/components";
 import { showcaseItems } from "../../data/showcase";
 
 const githubUrl = "https://github.com/centeno2/Gnet_System";
+
+const heroCopyByTitle: Record<
+  string,
+  {
+    heading: string;
+    description: string;
+  }
+> = {
+  "Panel principal": {
+    heading: "Panel principal para acceder a los módulos del sistema.",
+    description:
+      "Desde esta pantalla se centraliza la navegación hacia ventas, inventario, caja, clientes, reportes y las áreas principales de Gnet System.",
+  },
+  Login: {
+    heading: "Inicio de sesión seguro para usuarios autorizados.",
+    description:
+      "El acceso al sistema se controla mediante credenciales, permitiendo que cada usuario ingrese según su rol y permisos asignados.",
+  },
+  Facturación: {
+    heading: "Facturación ágil para ventas, productos y servicios.",
+    description:
+      "Permite registrar ventas al contado o crédito, agregar productos, servicios, pagos y generar comprobantes de manera ordenada.",
+  },
+  Productos: {
+    heading: "Control completo de productos, stock y garantías.",
+    description:
+      "Organiza productos, precios, existencias, series y garantías para mantener el inventario actualizado y reducir errores operativos.",
+  },
+  Compras: {
+    heading: "Registro de compras para actualizar el inventario.",
+    description:
+      "Cada compra alimenta el stock de productos, guarda datos del proveedor y ayuda a controlar costos, cantidades y entradas al sistema.",
+  },
+  Créditos: {
+    heading: "Seguimiento claro de créditos institucionales.",
+    description:
+      "Controla saldos pendientes, abonos, instituciones y estados de crédito para mejorar la recuperación y administración de cuentas.",
+  },
+  "Arqueo de caja": {
+    heading: "Control de caja con aperturas, egresos y cierres.",
+    description:
+      "Ayuda a verificar el dinero disponible, registrar movimientos y comparar los montos esperados contra los montos físicos.",
+  },
+  Devoluciones: {
+    heading: "Gestión de devoluciones y cambios de productos.",
+    description:
+      "Permite registrar devoluciones, validar condiciones y mantener trazabilidad sobre cambios, salidas y ajustes de inventario.",
+  },
+  "Instalación de cámaras": {
+    heading: "Control de servicios de instalación de cámaras.",
+    description:
+      "Organiza contratos, materiales, mano de obra, anticipos y saldos pendientes asociados a instalaciones realizadas por la tienda.",
+  },
+  "Servicio técnico": {
+    heading: "Seguimiento de trabajos y servicios técnicos.",
+    description:
+      "Facilita registrar diagnósticos, responsables, costos y detalles de servicios técnicos para mejorar el control operativo.",
+  },
+  "Otras salidas": {
+    heading: "Registro de salidas de inventario.",
+    description:
+      "Controla movimientos como uso interno, daños, pérdidas o ajustes, evitando que el inventario se modifique sin justificación.",
+  },
+  "Gestión de planilla": {
+    heading: "Administración de pagos y periodos de planilla.",
+    description:
+      "Permite gestionar trabajadores, cortes de pago, cálculos y comprobantes relacionados con la planilla del personal.",
+  },
+  Reportes: {
+    heading: "Informes para análisis y toma de decisiones.",
+    description:
+      "Genera reportes de ventas, inventario, créditos, compras, caja y otros procesos importantes para evaluar el funcionamiento de la tienda.",
+  },
+  Mantenimiento: {
+    heading: "Herramientas para respaldo y mantenimiento del sistema.",
+    description:
+      "Incluye funciones orientadas a proteger la información y apoyar tareas técnicas como respaldos o restauración de datos.",
+  },
+  "Acerca de": {
+    heading: "Información del proyecto y del equipo desarrollador.",
+    description:
+      "Presenta los datos generales de Gnet System, su propósito académico y los integrantes responsables de su construcción.",
+  },
+};
+
+const heroItems = showcaseItems.map((item) => ({
+  ...item,
+  heading: heroCopyByTitle[item.title]?.heading ?? item.title,
+  heroDescription: heroCopyByTitle[item.title]?.description ?? item.description,
+}));
+
+const initialItem = heroItems[0];
 ---
 
 <section class="relative min-h-screen overflow-hidden px-6 pt-10 pb-16 lg:px-10 lg:pt-8 lg:pb-20">
@@ -34,19 +126,32 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
           </div>
         </div>
 
-        <h2
-          class="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[var(--color-text)] sm:text-4xl xl:text-5xl"
-        >
-          Optimiza el funcionamiento de la tienda desde una sola plataforma.
-        </h2>
+        <div
+  data-hero-copy
+  class="hero-dynamic-copy hero-copy-panel"
+  aria-live="polite"
+>
+  <p
+    id="hero-current-module"
+    class="hero-copy-module"
+  >
+    {initialItem.title}
+  </p>
 
-        <p
-          class="max-w-xl border-l-4 border-[var(--color-secondary)]/50 pl-5 text-base leading-8 text-[var(--color-text)] sm:text-lg"
-        >
-          Sistema que mejora procesos
-          clave como facturación, inventario, caja, créditos, reportes y gestión
-          operativa dentro de Tienda Gnet.
-        </p>
+  <h2
+    id="hero-dynamic-heading"
+    class="hero-copy-title"
+  >
+    {initialItem.heading}
+  </h2>
+
+  <p
+    id="hero-dynamic-description"
+    class="hero-copy-description"
+  >
+    {initialItem.heroDescription}
+  </p>
+</div>
       </div>
 
       <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
@@ -106,10 +211,13 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
       <div class="coverflow">
         <div class="coverflow-stage">
           {
-            showcaseItems.map((item, index) => (
+            heroItems.map((item, index) => (
               <button
                 type="button"
                 data-coverflow-slide
+                data-title={item.title}
+                data-heading={item.heading}
+                data-description={item.heroDescription}
                 class="coverflow-slide"
                 aria-label={`Mostrar captura de ${item.title}`}
               >
@@ -134,6 +242,10 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
 
 <script>
   const root = document.querySelector<HTMLElement>("[data-coverflow-root]");
+  const heroCopy = document.querySelector<HTMLElement>("[data-hero-copy]");
+  const moduleTitle = document.querySelector<HTMLElement>("#hero-current-module");
+  const heading = document.querySelector<HTMLElement>("#hero-dynamic-heading");
+  const description = document.querySelector<HTMLElement>("#hero-dynamic-description");
 
   if (root) {
     const slides = Array.from(
@@ -141,7 +253,9 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
     );
 
     let activeIndex = 0;
+    let currentTextIndex = -1;
     let autoplayId: number | undefined;
+    let textTimeoutId: number | undefined;
 
     const getDistance = (index: number, active: number, total: number) => {
       let distance = index - active;
@@ -157,7 +271,43 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
       return distance;
     };
 
-    const renderCoverflow = () => {
+    const updateHeroText = (index: number, animate = true) => {
+      if (currentTextIndex === index) return;
+
+      const slide = slides[index];
+
+      if (!slide || !moduleTitle || !heading || !description) return;
+
+      const nextTitle = slide.dataset.title ?? "";
+      const nextHeading = slide.dataset.heading ?? "";
+      const nextDescription = slide.dataset.description ?? "";
+
+      currentTextIndex = index;
+
+      const applyText = () => {
+        moduleTitle.textContent = nextTitle;
+        heading.textContent = nextHeading;
+        description.textContent = nextDescription;
+      };
+
+      if (!animate || !heroCopy) {
+        applyText();
+        return;
+      }
+
+      if (textTimeoutId) {
+        window.clearTimeout(textTimeoutId);
+      }
+
+      heroCopy.classList.add("is-changing");
+
+      textTimeoutId = window.setTimeout(() => {
+        applyText();
+        heroCopy.classList.remove("is-changing");
+      }, 180);
+    };
+
+    const renderCoverflow = (animateText = true) => {
       const total = slides.length;
 
       slides.forEach((slide, index) => {
@@ -192,6 +342,8 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
           slide.classList.add("is-hidden");
         }
       });
+
+      updateHeroText(activeIndex, animateText);
     };
 
     const startAutoplay = () => {
@@ -214,7 +366,7 @@ const githubUrl = "https://github.com/centeno2/Gnet_System";
       });
     });
 
-    renderCoverflow();
+    renderCoverflow(false);
     startAutoplay();
   }
 </script>

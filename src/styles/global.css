@@ -36,6 +36,7 @@ body {
   overflow: hidden;
 }
 
+
 /* Fondo general */
 
 .gnet-motion-bg {
@@ -151,6 +152,7 @@ body {
   animation-duration: 10s;
   animation-delay: -2s;
 }
+
 
 /* Botones del hero */
 
@@ -929,5 +931,101 @@ body {
   .footer-orb,
   .footer-mark {
     animation: none;
+  }
+}
+
+/* Contenedor fijo transparente para texto dinámico del hero */
+
+.hero-copy-panel {
+  position: relative;
+  min-height: 25rem;
+  height: 25rem;
+  max-width: 45rem;
+  overflow: hidden;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.hero-dynamic-copy {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    filter 260ms ease;
+}
+
+.hero-dynamic-copy.is-changing {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(5px);
+}
+
+.hero-copy-module {
+  display: inline-flex;
+  max-width: 100%;
+  border-radius: 9999px;
+  border: 1px solid rgba(215, 228, 243, 0.95);
+  background: rgba(255, 255, 255, 0.46);
+  padding: 0.55rem 0.95rem;
+  color: var(--color-primary);
+  font-size: 0.72rem;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+}
+
+.hero-copy-title {
+  display: -webkit-box;
+  max-width: 100%;
+  margin-top: 1.35rem;
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: clamp(1.9rem, 3.5vw, 3.15rem);
+  font-weight: 950;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.hero-copy-description {
+  display: -webkit-box;
+  max-width: 40rem;
+  margin-top: 1.25rem;
+  overflow: hidden;
+  border-left: 4px solid rgba(11, 111, 228, 0.5);
+  padding-left: 1.1rem;
+  color: var(--color-text);
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
+  font-weight: 500;
+  line-height: 1.8;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+
+@media (max-width: 640px) {
+  .hero-copy-panel {
+    height: 27rem;
+    min-height: 27rem;
+  }
+
+  .hero-copy-title {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+    -webkit-line-clamp: 4;
+  }
+
+  .hero-copy-description {
+    max-width: 100%;
+    -webkit-line-clamp: 6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-dynamic-copy {
+    transition: none;
   }
 }
