@@ -1,0 +1,36 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+  </head>
+
+ <body class="min-h-screen antialiased">
+  <div class="gnet-motion-bg" aria-hidden="true">
+  <span class="gnet-orb gnet-orb-one"></span>
+  <span class="gnet-orb gnet-orb-two"></span>
+  <span class="gnet-orb gnet-orb-three"></span>
+
+  <span class="gnet-stream gnet-stream-one"></span>
+  <span class="gnet-stream gnet-stream-two"></span>
+  <span class="gnet-stream gnet-stream-three"></span>
+</div>
+
+  <div class="relative z-10">
+    <slot />
+  </div>
+</body>
+</html>

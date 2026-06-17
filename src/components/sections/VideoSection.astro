@@ -1,0 +1,43 @@
+---
+interface Props {
+  videoId: string;
+}
+
+const { videoId } = Astro.props;
+---
+
+<section id="video" class="px-6 py-16 lg:px-10">
+  <div class="mx-auto max-w-6xl">
+    <div data-scroll-card class="text-center">
+      <p class="text-sm font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">
+        Video explicativo
+      </p>
+
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
+        Conocé cómo funciona Gnet System
+      </h2>
+
+      <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base">
+        En este video se explica cómo el sistema mejora los procesos de ventas,
+        inventario, caja, créditos institucionales y reportes dentro de Tienda Gnet.
+      </p>
+    </div>
+
+    <div
+      data-scroll-card
+      class="mt-10 overflow-hidden rounded-[1.5rem] border border-white/80 bg-white/70 p-3 shadow-2xl shadow-blue-950/10 backdrop-blur-xl"
+    >
+      <div class="relative aspect-video overflow-hidden bg-[var(--color-bg-soft)]">
+        <iframe
+          class="absolute inset-0 h-full w-full"
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
+          title="Video explicativo de Gnet System"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        >
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>

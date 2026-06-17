@@ -1,0 +1,190 @@
+---
+import { showcaseItems } from "../../data/showcase";
+---
+
+<section class="relative min-h-screen overflow-hidden px-6 pt-10 pb-16 lg:px-10 lg:pt-8 lg:pb-20">
+  <div
+    class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-14 xl:gap-20 lg:grid-cols-[0.78fr_1.22fr]"
+  >
+    <div data-reveal class="relative z-20 max-w-2xl lg:-translate-y-4">
+ <div class="space-y-6">
+  <div>
+    <p
+      class="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[var(--color-secondary)]"
+    >
+      Sistema web de gestión comercial
+    </p>
+
+    <h1
+      class="text-5xl font-black leading-none tracking-tight sm:text-6xl xl:text-7xl"
+    >
+      <span
+        class="block bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[#2e8bc0] bg-clip-text text-transparent"
+      >
+        Gnet System
+      </span>
+    </h1>
+
+    <div class="mt-5 h-1.5 w-28 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]"></div>
+  </div>
+
+  <h2
+    class="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[var(--color-text)] sm:text-4xl xl:text-5xl"
+  >
+    Optimiza el funcionamiento de la tienda desde una sola plataforma.
+  </h2>
+
+  <p
+    class="max-w-xl border-l-4 border-[var(--color-secondary)]/50 pl-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg"
+  >
+    Una landing informativa que presenta cómo el sistema mejora procesos clave
+    como facturación, inventario, caja, créditos, reportes y gestión operativa
+    dentro de Tienda Gnet.
+  </p>
+</div>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+        <a
+          href="#video"
+          class="inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-900/20 transition hover:bg-[var(--color-secondary)]"
+        >
+          Ver demostración
+        </a>
+
+        <a
+          href="#tecnologias"
+          class="inline-flex items-center justify-center rounded-full border border-[var(--color-bg-soft)] bg-white/70 px-6 py-3 text-sm font-bold text-[var(--color-text)] transition hover:border-[var(--color-secondary)] hover:text-[var(--color-primary)]"
+        >
+          Ver tecnologías
+        </a>
+      </div>
+    </div>
+
+    <div
+      data-coverflow-root
+      data-reveal
+      class="relative z-10 w-full min-w-0 overflow-visible lg:-translate-y-3"
+    >
+      <div
+        class="pointer-events-none absolute -left-10 top-8 h-56 w-56 rounded-full bg-[var(--color-secondary)]/20 blur-3xl"
+      ></div>
+
+      <div
+        class="pointer-events-none absolute right-0 bottom-12 h-72 w-72 rounded-full bg-[var(--color-primary)]/16 blur-3xl"
+      ></div>
+
+      <div class="coverflow">
+        <div class="coverflow-stage">
+          {
+            showcaseItems.map((item, index) => (
+              <button
+                type="button"
+                data-coverflow-slide
+                class="coverflow-slide"
+                aria-label={`Mostrar captura de ${item.title}`}
+              >
+                <span class="coverflow-card">
+                  <img
+                    src={item.image}
+                    alt={`Captura de ${item.title} en Gnet System`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    draggable="false"
+                  />
+
+                  <span class="coverflow-fade"></span>
+                </span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-coverflow-root]");
+
+  if (root) {
+    const slides = Array.from(
+      root.querySelectorAll<HTMLButtonElement>("[data-coverflow-slide]"),
+    );
+
+    let activeIndex = 0;
+    let autoplayId: number | undefined;
+
+    const getDistance = (index: number, active: number, total: number) => {
+      let distance = index - active;
+
+      if (distance > total / 2) {
+        distance -= total;
+      }
+
+      if (distance < -total / 2) {
+        distance += total;
+      }
+
+      return distance;
+    };
+
+    const renderCoverflow = () => {
+      const total = slides.length;
+
+      slides.forEach((slide, index) => {
+        const distance = getDistance(index, activeIndex, total);
+
+        slide.classList.remove(
+          "is-active",
+          "is-left-one",
+          "is-right-one",
+          "is-left-two",
+          "is-right-two",
+          "is-left-three",
+          "is-right-three",
+          "is-hidden",
+        );
+
+        if (distance === 0) {
+          slide.classList.add("is-active");
+        } else if (distance === -1) {
+          slide.classList.add("is-left-one");
+        } else if (distance === 1) {
+          slide.classList.add("is-right-one");
+        } else if (distance === -2) {
+          slide.classList.add("is-left-two");
+        } else if (distance === 2) {
+          slide.classList.add("is-right-two");
+        } else if (distance === -3) {
+          slide.classList.add("is-left-three");
+        } else if (distance === 3) {
+          slide.classList.add("is-right-three");
+        } else {
+          slide.classList.add("is-hidden");
+        }
+      });
+    };
+
+    const startAutoplay = () => {
+      autoplayId = window.setInterval(() => {
+        activeIndex = (activeIndex + 1) % slides.length;
+        renderCoverflow();
+      }, 3400);
+    };
+
+    slides.forEach((slide, index) => {
+      slide.addEventListener("click", () => {
+        activeIndex = index;
+        renderCoverflow();
+
+        if (autoplayId) {
+          window.clearInterval(autoplayId);
+        }
+
+        startAutoplay();
+      });
+    });
+
+    renderCoverflow();
+    startAutoplay();
+  }
+</script>

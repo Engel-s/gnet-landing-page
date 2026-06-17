@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #0e48a1;
+  --color-secondary: #0b6fe4;
+  --color-bg: #f0f3f7;
+  --color-bg-soft: #d7e4f3;
+  --color-text: #1a2b42;
+  --color-muted: #757e8d;
+  --color-success: #2ecc71;
+  --color-warning: #e67e22;
+  --color-danger: #e74c3c;
+  --color-white: #ffffff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.gnet-animated-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Fondo general animado */
+
+.gnet-motion-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 16% 22%, rgba(11, 111, 228, 0.22), transparent 30%),
+    radial-gradient(circle at 82% 28%, rgba(14, 72, 161, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 90%, rgba(46, 139, 192, 0.18), transparent 36%),
+    linear-gradient(135deg, #f0f3f7 0%, #eef4fb 42%, #d7e4f3 100%);
+}
+
+.gnet-motion-bg::before {
+  content: "";
+  position: absolute;
+  inset: -35%;
+  background:
+    conic-gradient(
+      from 180deg at 50% 50%,
+      transparent 0deg,
+      rgba(11, 111, 228, 0.16) 54deg,
+      transparent 110deg,
+      rgba(14, 72, 161, 0.14) 170deg,
+      transparent 235deg,
+      rgba(46, 139, 192, 0.16) 300deg,
+      transparent 360deg
+    );
+  filter: blur(72px);
+  opacity: 0.85;
+  animation: gnetAurora 24s ease-in-out infinite alternate;
+}
+
+.gnet-motion-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.32;
+  background-image:
+    linear-gradient(rgba(14, 72, 161, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 72, 161, 0.08) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(circle at center, black 0%, black 48%, transparent 82%);
+  animation: gnetGridMove 18s linear infinite;
+}
+
+.gnet-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(42px);
+  opacity: 0.45;
+  animation: gnetOrbFloat 14s ease-in-out infinite alternate;
+}
+
+.gnet-orb-one {
+  width: 22rem;
+  height: 22rem;
+  left: 8%;
+  top: 12%;
+  background: rgba(11, 111, 228, 0.22);
+}
+
+.gnet-orb-two {
+  width: 28rem;
+  height: 28rem;
+  right: 8%;
+  top: 24%;
+  background: rgba(14, 72, 161, 0.18);
+  animation-delay: -4s;
+}
+
+.gnet-orb-three {
+  width: 24rem;
+  height: 24rem;
+  left: 38%;
+  bottom: 4%;
+  background: rgba(46, 139, 192, 0.16);
+  animation-delay: -8s;
+}
+
+.gnet-stream {
+  position: absolute;
+  top: -30%;
+  width: 1px;
+  height: 42vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(14, 72, 161, 0.08),
+    rgba(11, 111, 228, 0.35),
+    transparent
+  );
+  opacity: 0.55;
+  transform: rotate(18deg);
+  animation: gnetStreamFall 9s linear infinite;
+}
+
+.gnet-stream-one {
+  left: 22%;
+  animation-duration: 11s;
+}
+
+.gnet-stream-two {
+  left: 58%;
+  animation-duration: 14s;
+  animation-delay: -5s;
+}
+
+.gnet-stream-three {
+  left: 82%;
+  animation-duration: 10s;
+  animation-delay: -2s;
+}
+
+/* Carrusel principal coverflow 3D */
+
+.coverflow {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  height: 34rem;
+  margin-inline: auto;
+  overflow: visible;
+  perspective: 1900px;
+  perspective-origin: 50% 48%;
+}
+
+.coverflow-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform-style: preserve-3d;
+}
+
+.coverflow-slide {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: min(58vw, 560px);
+  height: 21rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transform: translate3d(-50%, -50%, -900px) rotateY(0deg) scale(0.25);
+  transform-style: preserve-3d;
+  transition:
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 650ms ease,
+    filter 650ms ease;
+  pointer-events: none;
+}
+
+.coverflow-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  background: transparent;
+  transform-style: preserve-3d;
+}
+
+.coverflow-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 34px 36px rgba(26, 43, 66, 0.28));
+  transform: translateZ(0);
+}
+
+.coverflow-fade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  box-shadow: inset 0 0 48px 24px rgba(255, 255, 255, 0.82);
+}
+
+.coverflow-slide.is-active {
+  z-index: 80;
+  opacity: 1;
+  filter: blur(0);
+  pointer-events: auto;
+  transform: translate3d(-50%, -50%, 230px) rotateY(0deg) scale(1.08);
+}
+
+.coverflow-slide.is-left-one {
+  z-index: 70;
+  opacity: 0.9;
+  filter: blur(0.1px);
+  pointer-events: auto;
+  transform: translate3d(-96%, -50%, -40px) rotateY(62deg) scale(0.82);
+}
+
+.coverflow-slide.is-right-one {
+  z-index: 70;
+  opacity: 0.9;
+  filter: blur(0.1px);
+  pointer-events: auto;
+  transform: translate3d(-4%, -50%, -40px) rotateY(-62deg) scale(0.82);
+}
+
+.coverflow-slide.is-left-two {
+  z-index: 55;
+  opacity: 0.58;
+  filter: blur(0.6px);
+  pointer-events: auto;
+  transform: translate3d(-124%, -50%, -280px) rotateY(72deg) scale(0.62);
+}
+
+.coverflow-slide.is-right-two {
+  z-index: 55;
+  opacity: 0.58;
+  filter: blur(0.6px);
+  pointer-events: auto;
+  transform: translate3d(24%, -50%, -280px) rotateY(-72deg) scale(0.62);
+}
+
+.coverflow-slide.is-left-three {
+  z-index: 40;
+  opacity: 0.28;
+  filter: blur(1.4px);
+  transform: translate3d(-144%, -50%, -520px) rotateY(78deg) scale(0.46);
+}
+
+.coverflow-slide.is-right-three {
+  z-index: 40;
+  opacity: 0.28;
+  filter: blur(1.4px);
+  transform: translate3d(44%, -50%, -520px) rotateY(-78deg) scale(0.46);
+}
+
+.coverflow-slide.is-hidden {
+  z-index: 0;
+  opacity: 0;
+  filter: blur(2px);
+  transform: translate3d(-50%, -50%, -900px) scale(0.25);
+}
+
+/* Carrusel de tecnologías */
+
+.tech-train {
+  animation: techTrain 26s linear infinite;
+}
+
+/* Animaciones */
+
+@keyframes techTrain {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes gnetAurora {
+  from {
+    transform: translate3d(-2%, -1%, 0) rotate(0deg) scale(1);
+  }
+
+  to {
+    transform: translate3d(2%, 2%, 0) rotate(16deg) scale(1.08);
+  }
+}
+
+@keyframes gnetGridMove {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 72px 72px;
+  }
+}
+
+@keyframes gnetOrbFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(36px, -28px, 0) scale(1.08);
+  }
+}
+
+@keyframes gnetStreamFall {
+  from {
+    transform: translate3d(-80px, -40vh, 0) rotate(18deg);
+  }
+
+  to {
+    transform: translate3d(120px, 140vh, 0) rotate(18deg);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 1024px) {
+  .coverflow {
+    height: 30rem;
+  }
+
+  .coverflow-slide {
+    width: min(76vw, 620px);
+    height: 20rem;
+  }
+
+  .coverflow-slide.is-left-one {
+    transform: translate3d(-90%, -50%, -80px) rotateY(56deg) scale(0.72);
+  }
+
+  .coverflow-slide.is-right-one {
+    transform: translate3d(-10%, -50%, -80px) rotateY(-56deg) scale(0.72);
+  }
+}
+
+@media (max-width: 640px) {
+  .coverflow {
+    height: 23rem;
+  }
+
+  .coverflow-slide {
+    width: 88vw;
+    height: 17rem;
+  }
+
+  .coverflow-slide.is-active {
+    transform: translate3d(-50%, -50%, 140px) rotateY(0deg) scale(1);
+  }
+
+  .coverflow-slide.is-left-one {
+    opacity: 0.36;
+    transform: translate3d(-82%, -50%, -120px) rotateY(48deg) scale(0.66);
+  }
+
+  .coverflow-slide.is-right-one {
+    opacity: 0.36;
+    transform: translate3d(-18%, -50%, -120px) rotateY(-48deg) scale(0.66);
+  }
+
+  .coverflow-slide.is-left-two,
+  .coverflow-slide.is-right-two,
+  .coverflow-slide.is-left-three,
+  .coverflow-slide.is-right-three {
+    opacity: 0;
+  }
+}
+
+/* Reducir movimiento */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .coverflow-slide {
+    transition: none;
+  }
+
+  .tech-train,
+  .gnet-motion-bg::before,
+  .gnet-motion-bg::after,
+  .gnet-orb,
+  .gnet-stream {
+    animation: none;
+  }
+}
