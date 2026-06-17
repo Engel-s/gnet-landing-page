@@ -11,7 +11,7 @@ export const teamMembers = [
     name: "Guillermo Matamoros",
     role: "Programador",
     description:
-      "Participó en el desarrollo de funcionalidades, construcción de interfaces y apoyo en la lógica del sistema.",
+      "Desarrollo de funcionalidades, construcción de interfaces y apoyo en la lógica del sistema.",
     image: "/team/Guillermo.jpg",
     icon: "lucide:code-2",
   },
@@ -19,7 +19,7 @@ export const teamMembers = [
     name: "Engel Chavarría",
     role: "Full Stack",
     description:
-      "Apoyó en la programación del sistema, desarrollo de funcionalidades, diseño visual, conexión con base de datos, página visual y mejora de procesos internos.",
+      "Programación del sistema, desarrollo de funcionalidades, diseño visual, conexión con base de datos, página visual y mejora de procesos internos.",
     image: "/team/Engel.jpg",
     icon: "lucide:layers-3",
   },
@@ -27,7 +27,7 @@ export const teamMembers = [
     name: "Heyner Centeno",
     role: "Full Stack",
     description:
-      "Participó en el desarrollo de módulos, analista de datos, estructura de datos, diseño de interfaces y pruebas del sistema.",
+      "Desarrollo de módulos, analista de datos, estructura de datos, diseño de interfaces y pruebas del sistema.",
     image: "/team/Centeno.jpg",
     icon: "lucide:database-zap",
   },
@@ -35,7 +35,7 @@ export const teamMembers = [
     name: "Martha Barrera",
     role: "Programación",
     description:
-      "Apoyó en el desarrollo de funcionalidades, revisión de procesos y construcción de partes importantes del sistema.",
+      "Desarrollo de funcionalidades, revisión de procesos y construcción de partes importantes del sistema.",
     image: "/team/Martha.jpg",
     icon: "lucide:terminal-square",
   },
