@@ -1,5 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
+
 const year = new Date().getFullYear();
+const githubUrl = "https://github.com/centeno2/Gnet_System";
 
 const links = [
   {
@@ -87,19 +90,37 @@ const links = [
     </div>
 
     <div
-      class="mt-10 flex flex-col gap-4 border-t border-[var(--color-bg-soft)] pt-5 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between"
+      class="mt-10 flex flex-col gap-4 border-t border-[var(--color-bg-soft)] pt-6 text-sm text-[var(--color-muted)] sm:flex-row sm:items-center sm:justify-between"
     >
       <p>
         © {year} · Proyecto académico
       </p>
 
-      <a
-        href="#"
-        class="footer-top-link inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-bg-soft)] bg-white/70 px-4 py-2 text-sm font-black text-[var(--color-primary)] transition hover:border-[var(--color-secondary)] hover:bg-white"
-      >
-        Inicio
-        <span>↑</span>
-      </a>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+        <a
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hero-cta hero-cta-github"
+          aria-label="Ver repositorio de Gnet System en GitHub"
+        >
+          <span class="hero-cta-icon">
+            <Icon name="simple-icons:github" class="size-5" />
+          </span>
+
+          <span class="hero-cta-text">
+            GNET-System
+          </span>
+        </a>
+
+        <a
+          href="#"
+          class="footer-top-link inline-flex w-fit items-center gap-2 rounded-full border border-[var(--color-bg-soft)] bg-white/70 px-4 py-3 text-sm font-black text-[var(--color-primary)] transition hover:border-[var(--color-secondary)] hover:bg-white"
+        >
+          Volver arriba
+          <span>↑</span>
+        </a>
+      </div>
     </div>
   </div>
 </footer>

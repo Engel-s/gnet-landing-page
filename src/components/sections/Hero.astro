@@ -1,5 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import { showcaseItems } from "../../data/showcase";
+
+const githubUrl = "https://github.com/centeno2/Gnet_System";
 ---
 
 <section class="relative min-h-screen overflow-hidden px-6 pt-10 pb-16 lg:px-10 lg:pt-8 lg:pb-20">
@@ -7,55 +10,80 @@ import { showcaseItems } from "../../data/showcase";
     class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-14 xl:gap-20 lg:grid-cols-[0.78fr_1.22fr]"
   >
     <div data-reveal class="relative z-20 max-w-2xl lg:-translate-y-4">
- <div class="space-y-6">
-  <div>
-    <p
-      class="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[var(--color-secondary)]"
-    >
-      Sistema web de gestión comercial
-    </p>
+      <div class="space-y-6">
+        <div>
+          <p
+            class="mb-3 text-sm font-black uppercase tracking-[0.28em] text-[var(--color-secondary)]"
+          >
+            Sistema web de gestión comercial
+          </p>
 
-    <h1
-      class="text-5xl font-black leading-none tracking-tight sm:text-6xl xl:text-7xl"
-    >
-      <span
-        class="block bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[#2e8bc0] bg-clip-text text-transparent"
-      >
-        Gnet System
-      </span>
-    </h1>
+          <h1
+            class="text-5xl font-black leading-none tracking-tight sm:text-6xl xl:text-7xl"
+          >
+            <span
+              class="block bg-gradient-to-r from-[var(--color-primary)] via-[var(--color-secondary)] to-[#2e8bc0] bg-clip-text text-transparent"
+            >
+              Gnet System
+            </span>
+          </h1>
 
-    <div class="mt-5 h-1.5 w-28 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]"></div>
-  </div>
+          <div
+            class="mt-5 h-1.5 w-28 rounded-full bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)]"
+          >
+          </div>
+        </div>
 
-  <h2
-    class="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[var(--color-text)] sm:text-4xl xl:text-5xl"
-  >
-    Optimiza el funcionamiento de la tienda desde una sola plataforma.
-  </h2>
-
-  <p
-    class="max-w-xl border-l-4 border-[var(--color-secondary)]/50 pl-5 text-base leading-8 text-[var(--color-muted)] sm:text-lg"
-  >
-    Presenta cómo el sistema mejora procesos clave
-    como facturación, inventario, caja, créditos, reportes y gestión operativa
-    dentro de la tienda Gnet, Matagalpa.
-  </p>
-</div>
-
-      <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-        <a
-          href="#video"
-          class="inline-flex items-center justify-center rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-blue-900/20 transition hover:bg-[var(--color-secondary)]"
+        <h2
+          class="max-w-2xl text-3xl font-black leading-tight tracking-tight text-[var(--color-text)] sm:text-4xl xl:text-5xl"
         >
-          Ver demostración
+          Optimiza el funcionamiento de la tienda desde una sola plataforma.
+        </h2>
+
+        <p
+          class="max-w-xl border-l-4 border-[var(--color-secondary)]/50 pl-5 text-base leading-8 text-[var(--color-text)] sm:text-lg"
+        >
+          Sistema que mejora procesos
+          clave como facturación, inventario, caja, créditos, reportes y gestión
+          operativa dentro de Tienda Gnet.
+        </p>
+      </div>
+
+      <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
+        <a href="#video" class="hero-cta hero-cta-primary">
+          <span class="hero-cta-icon">
+            <Icon name="lucide:play" class="size-5" />
+          </span>
+
+          <span class="hero-cta-text">
+            Video
+          </span>
+        </a>
+
+        <a href="#tecnologias" class="hero-cta hero-cta-soft">
+          <span class="hero-cta-icon">
+            <Icon name="lucide:blocks" class="size-5" />
+          </span>
+
+          <span class="hero-cta-text">
+            Tecnologías
+          </span>
         </a>
 
         <a
-          href="#tecnologias"
-          class="inline-flex items-center justify-center rounded-full border border-[var(--color-bg-soft)] bg-white/70 px-6 py-3 text-sm font-bold text-[var(--color-text)] transition hover:border-[var(--color-secondary)] hover:text-[var(--color-primary)]"
+          href={githubUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hero-cta hero-cta-github"
+          aria-label="Ver repositorio de Gnet System en GitHub"
         >
-          Ver tecnologías
+          <span class="hero-cta-icon">
+            <Icon name="simple-icons:github" class="size-5" />
+          </span>
+
+          <span class="hero-cta-text">
+            GNET-System
+          </span>
         </a>
       </div>
     </div>
@@ -67,11 +95,13 @@ import { showcaseItems } from "../../data/showcase";
     >
       <div
         class="pointer-events-none absolute -left-10 top-8 h-56 w-56 rounded-full bg-[var(--color-secondary)]/20 blur-3xl"
-      ></div>
+      >
+      </div>
 
       <div
         class="pointer-events-none absolute right-0 bottom-12 h-72 w-72 rounded-full bg-[var(--color-primary)]/16 blur-3xl"
-      ></div>
+      >
+      </div>
 
       <div class="coverflow">
         <div class="coverflow-stage">
