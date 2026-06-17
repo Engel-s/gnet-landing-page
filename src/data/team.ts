@@ -36,7 +36,7 @@ export const teamMembers = [
     role: "Programación",
     description:
       "Apoyó en el desarrollo de funcionalidades, revisión de procesos y construcción de partes importantes del sistema.",
-    image: "/team/Martha.png",
+    image: "/team/Martha.jpg",
     icon: "lucide:terminal-square",
   },
 ];
