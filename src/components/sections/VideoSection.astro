@@ -7,37 +7,74 @@ const { videoId } = Astro.props;
 ---
 
 <section id="video" class="px-6 py-16 lg:px-10">
-  <div class="mx-auto max-w-6xl">
+  <div
+    data-gnet-video-player
+    data-video-id={videoId}
+    class="mx-auto max-w-6xl"
+  >
     <div data-scroll-card class="text-center">
-      <p class="text-sm font-bold uppercase tracking-[0.18em] text-[var(--color-primary)]">
-        Video explicativo
-      </p>
 
-      <h2 class="mt-3 text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
+      <h2 class="mt-3 text-3xl font-black tracking-tight text-[var(--color-primary)] sm:text-4xl">
         Conocé cómo funciona Gnet System
       </h2>
-
-      <p class="mx-auto mt-4 max-w-2xl text-sm leading-7 text-[var(--color-muted)] sm:text-base">
-        En este video se explica cómo el sistema mejora los procesos de ventas,
-        inventario, caja, créditos institucionales y reportes dentro de Tienda Gnet.
-      </p>
     </div>
 
     <div
       data-scroll-card
-      class="mt-10 overflow-hidden rounded-[1.5rem] border border-white/80 bg-white/70 p-3 shadow-2xl shadow-blue-950/10 backdrop-blur-xl"
+      class="mt-10 overflow-hidden rounded-[1.5rem] shadow-2xl shadow-blue-950/10 backdrop-blur-xl"
     >
-      <div class="relative aspect-video overflow-hidden bg-[var(--color-bg-soft)]">
+      <div class="relative aspect-video overflow-hidden rounded-[1.1rem] bg-transparent">
         <iframe
+          id="gnet-video"
           class="absolute inset-0 h-full w-full"
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1`}
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&loop=1&playlist=${videoId}`}
           title="Video explicativo de Gnet System"
           loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
+          allow="autoplay; encrypted-media; picture-in-picture; web-share"
+          allowfullscreen={false}
         >
         </iframe>
+
+        <div
+          class="absolute inset-0 z-10 cursor-default"
+          aria-hidden="true"
+        >
+        </div>
       </div>
+    </div>
+
+    <div data-scroll-card class="mt-6 flex justify-center">
+      <button
+        id="play-video-with-audio"
+        type="button"
+        class="group inline-flex items-center gap-3 rounded-full bg-[var(--color-primary)] px-6 py-3 text-sm font-black text-white shadow-xl shadow-blue-950/15 transition hover:-translate-y-0.5 hover:bg-[var(--color-secondary)]"
+      >
+        <span class="grid size-9 place-items-center rounded-full bg-white/15 transition group-hover:bg-white/25">
+          ▶
+        </span>
+
+        Reiniciar video con audio
+      </button>
     </div>
   </div>
 </section>
+
+<script>
+  const player = document.querySelector<HTMLElement>("[data-gnet-video-player]");
+  const iframe = document.querySelector<HTMLIFrameElement>("#gnet-video");
+  const playButton = document.querySelector<HTMLButtonElement>("#play-video-with-audio");
+
+  playButton?.addEventListener("click", () => {
+    if (!player || !iframe) return;
+
+    const videoId = player.dataset.videoId;
+
+    if (!videoId) return;
+
+    iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=0&controls=0&disablekb=1&fs=0&rel=0&modestbranding=1&playsinline=1&start=0`;
+
+    playButton.textContent = "Reproduciendo";
+    playButton.disabled = true;
+    playButton.classList.add("cursor-default", "opacity-80", "hover:translate-y-0");
+  });
+</script>

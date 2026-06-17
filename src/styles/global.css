@@ -411,3 +411,146 @@ body {
     animation: none;
   }
 }
+
+.footer-glow-line {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-secondary),
+    var(--color-primary),
+    #2e8bc0,
+    transparent
+  );
+  background-size: 220% 100%;
+  animation: footerGlowLine 7s linear infinite;
+}
+
+.footer-orb {
+  position: absolute;
+  border-radius: 9999px;
+  pointer-events: none;
+  filter: blur(48px);
+  opacity: 0.28;
+  animation: footerOrbFloat 10s ease-in-out infinite alternate;
+}
+
+.footer-orb-one {
+  width: 18rem;
+  height: 18rem;
+  left: 8%;
+  bottom: -6rem;
+  background: var(--color-secondary);
+}
+
+.footer-orb-two {
+  width: 16rem;
+  height: 16rem;
+  right: 12%;
+  top: 1rem;
+  background: var(--color-primary);
+  animation-delay: -4s;
+}
+
+.footer-mark {
+  animation: footerMarkFloat 4.8s ease-in-out infinite;
+}
+
+.footer-link {
+  position: relative;
+  transition:
+    color 250ms ease,
+    transform 250ms ease;
+}
+
+.footer-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 0;
+  height: 2px;
+  border-radius: 9999px;
+  background: var(--color-secondary);
+  transition: width 250ms ease;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+  transform: translateX(4px);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-badge {
+  display: inline-flex;
+  border-radius: 9999px;
+  border: 1px solid rgba(215, 228, 243, 0.95);
+  background: rgba(255, 255, 255, 0.72);
+  padding: 0.55rem 0.85rem;
+  color: var(--color-text);
+  font-size: 0.78rem;
+  font-weight: 900;
+  box-shadow: 0 10px 24px rgba(26, 43, 66, 0.06);
+  transition:
+    transform 250ms ease,
+    border-color 250ms ease,
+    color 250ms ease;
+}
+
+.footer-badge:hover {
+  transform: translateY(-3px);
+  border-color: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.footer-top-link span {
+  transition: transform 250ms ease;
+}
+
+.footer-top-link:hover span {
+  transform: translateY(-3px);
+}
+
+@keyframes footerGlowLine {
+  from {
+    background-position: 0% 50%;
+  }
+
+  to {
+    background-position: 220% 50%;
+  }
+}
+
+@keyframes footerOrbFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(28px, -18px, 0) scale(1.08);
+  }
+}
+
+@keyframes footerMarkFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-glow-line,
+  .footer-orb,
+  .footer-mark {
+    animation: none;
+  }
+}
