@@ -27,7 +27,7 @@ export const teamMembers = [
     name: "Heyner Centeno",
     role: "Full Stack",
     description:
-      "Participó en el desarrollo de módulos, estructura de datos, diseño de interfaces y pruebas del sistema.",
+      "Participó en el desarrollo de módulos, analista de datos, estructura de datos, diseño de interfaces y pruebas del sistema.",
     image: "/team/Centeno.jpg",
     icon: "lucide:database-zap",
   },
