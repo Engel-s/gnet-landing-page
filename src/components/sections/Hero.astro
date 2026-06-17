@@ -12,7 +12,7 @@ const heroCopyByTitle: Record<
   }
 > = {
   "Panel principal": {
-    heading: "Panel principal para acceder a los módulos del sistema.",
+    heading: "Panel principal para acceder rápidamente a los módulos del sistema.",
     description:
       "Desde esta pantalla se centraliza la navegación hacia ventas, inventario, caja, clientes, reportes y las áreas principales de Gnet System.",
   },
@@ -62,7 +62,7 @@ const heroCopyByTitle: Record<
       "Facilita registrar diagnósticos, responsables, costos y detalles de servicios técnicos para mejorar el control operativo.",
   },
   "Otras salidas": {
-    heading: "Registro de salidas de inventario.",
+    heading: "Registro de salidas de inventario no asociadas a ventas.",
     description:
       "Controla movimientos como uso interno, daños, pérdidas o ajustes, evitando que el inventario se modifique sin justificación.",
   },
@@ -99,9 +99,9 @@ const initialItem = heroItems[0];
 
 <section class="relative min-h-screen overflow-hidden px-6 pt-10 pb-16 lg:px-10 lg:pt-8 lg:pb-20">
   <div
-    class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-14 xl:gap-20 lg:grid-cols-[0.78fr_1.22fr]"
+    class="mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-10 xl:gap-20 lg:grid-cols-[0.78fr_1.22fr]"
   >
-    <div data-reveal class="relative z-20 max-w-2xl lg:-translate-y-4">
+    <div data-reveal class="relative z-20 order-1 max-w-2xl lg:-translate-y-4">
       <div class="space-y-6">
         <div>
           <p
@@ -127,34 +127,34 @@ const initialItem = heroItems[0];
         </div>
 
         <div
-  data-hero-copy
-  class="hero-dynamic-copy hero-copy-panel"
-  aria-live="polite"
->
-  <p
-    id="hero-current-module"
-    class="hero-copy-module"
-  >
-    {initialItem.title}
-  </p>
+          data-hero-copy
+          class="hero-dynamic-copy hero-copy-panel"
+          aria-live="polite"
+        >
+          <p
+            id="hero-current-module"
+            class="hero-copy-module"
+          >
+            {initialItem.title}
+          </p>
 
-  <h2
-    id="hero-dynamic-heading"
-    class="hero-copy-title"
-  >
-    {initialItem.heading}
-  </h2>
+          <h2
+            id="hero-dynamic-heading"
+            class="hero-copy-title"
+          >
+            {initialItem.heading}
+          </h2>
 
-  <p
-    id="hero-dynamic-description"
-    class="hero-copy-description"
-  >
-    {initialItem.heroDescription}
-  </p>
-</div>
+          <p
+            id="hero-dynamic-description"
+            class="hero-copy-description"
+          >
+            {initialItem.heroDescription}
+          </p>
+        </div>
       </div>
 
-      <div class="mt-9 grid gap-3 sm:flex sm:flex-wrap sm:items-center">
+      <div class="mt-9 hidden gap-3 lg:flex lg:flex-wrap lg:items-center">
         <a href="#video" class="hero-cta hero-cta-primary">
           <span class="hero-cta-icon">
             <Icon name="lucide:play" class="size-5" />
@@ -196,7 +196,7 @@ const initialItem = heroItems[0];
     <div
       data-coverflow-root
       data-reveal
-      class="relative z-10 w-full min-w-0 overflow-visible lg:-translate-y-3"
+      class="relative z-10 order-2 w-full min-w-0 overflow-visible lg:-translate-y-3"
     >
       <div
         class="pointer-events-none absolute -left-10 top-8 h-56 w-56 rounded-full bg-[var(--color-secondary)]/20 blur-3xl"
@@ -236,6 +236,47 @@ const initialItem = heroItems[0];
           }
         </div>
       </div>
+    </div>
+
+    <div
+      data-reveal
+      class="order-3 grid gap-3 sm:flex sm:flex-wrap sm:justify-center lg:hidden"
+    >
+      <a href="#video" class="hero-cta hero-cta-primary">
+        <span class="hero-cta-icon">
+          <Icon name="lucide:play" class="size-5" />
+        </span>
+
+        <span class="hero-cta-text">
+          Video
+        </span>
+      </a>
+
+      <a href="#tecnologias" class="hero-cta hero-cta-soft">
+        <span class="hero-cta-icon">
+          <Icon name="lucide:blocks" class="size-5" />
+        </span>
+
+        <span class="hero-cta-text">
+          Tecnologías
+        </span>
+      </a>
+
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hero-cta hero-cta-github"
+        aria-label="Ver repositorio de Gnet System en GitHub"
+      >
+        <span class="hero-cta-icon">
+          <Icon name="simple-icons:github" class="size-5" />
+        </span>
+
+        <span class="hero-cta-text">
+          GNET-System
+        </span>
+      </a>
     </div>
   </div>
 </section>

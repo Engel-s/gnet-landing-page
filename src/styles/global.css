@@ -938,8 +938,8 @@ body {
 
 .hero-copy-panel {
   position: relative;
-  min-height: 25rem;
-  height: 25rem;
+  min-height: 18.5rem;
+  height: 18.5rem;
   max-width: 45rem;
   overflow: hidden;
   padding: 0;
@@ -1007,10 +1007,17 @@ body {
   -webkit-line-clamp: 5;
 }
 
+@media (min-width: 1024px) {
+  .hero-copy-panel {
+    min-height: 25rem;
+    height: 25rem;
+  }
+}
+
 @media (max-width: 640px) {
   .hero-copy-panel {
-    height: 27rem;
-    min-height: 27rem;
+    height: 18rem;
+    min-height: 18rem;
   }
 
   .hero-copy-title {
@@ -1023,6 +1030,17 @@ body {
     -webkit-line-clamp: 6;
   }
 }
+
+  .hero-copy-title {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+    -webkit-line-clamp: 4;
+  }
+
+  .hero-copy-description {
+    max-width: 100%;
+    -webkit-line-clamp: 6;
+  }
+
 
 @media (prefers-reduced-motion: reduce) {
   .hero-dynamic-copy {
